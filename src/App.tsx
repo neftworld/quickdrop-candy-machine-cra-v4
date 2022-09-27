@@ -1,3 +1,4 @@
+import { Provider } from "react-redux";
 import "./App.css";
 import { useMemo } from "react";
 import * as anchor from "@project-serum/anchor";
@@ -20,6 +21,7 @@ import {
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
+import { useStore } from "@jeeh/tokenclaim-ui";
 
 const theme = createTheme({
   palette: {
@@ -67,11 +69,15 @@ const App = () => {
     []
   );
 
+  const store = useStore()
   return (
+    <Provider store={store}>
     <ThemeProvider theme={theme}>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
           <WalletDialogProvider>
+            asdfasdf
+            asdfasdf
             <Home
               candyMachineId={candyMachineId}
               connection={connection}
@@ -84,6 +90,7 @@ const App = () => {
         </WalletProvider>
       </ConnectionProvider>
     </ThemeProvider>
+    </Provider>
   );
 };
 
