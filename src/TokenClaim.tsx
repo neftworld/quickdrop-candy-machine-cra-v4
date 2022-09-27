@@ -49,8 +49,8 @@ export const TokenClaimer = () => {
         active && setHighlight(false);
       }, 350);
     }
-    () => {
-      return (active = false);
+    return () => {
+      active = false;
     };
   }, [claimedAmount]);
 
