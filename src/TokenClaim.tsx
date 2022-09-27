@@ -38,7 +38,7 @@ export const TokenClaimer = () => {
     setHighlight(!isFirstLoad);
     setLastClaimedAmount(claimedAmount.toString());
     return isFirstLoad;
-  }, [lastClaimedAmount]);
+  }, [lastClaimedAmount, claimedAmount]);
 
   useEffect(() => {
     let active = true;
