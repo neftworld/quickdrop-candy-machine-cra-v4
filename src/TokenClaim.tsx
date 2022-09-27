@@ -1,5 +1,5 @@
 import { NotifyType, useTokenClaimer } from "@jeeh/tokenclaim-ui";
-import { CircularProgress, Typography } from "@material-ui/core";
+import { Box, CircularProgress, Typography } from "@material-ui/core";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback, useEffect, useState } from "react";
 import { CTAButton } from "./MintButton";
@@ -20,7 +20,7 @@ export const TokenClaimer = () => {
     isError,
   } = useTokenClaimer(
     {
-      quickdropId: "ErpN8n2Z82CebwyJnEgc6qU7owJHrjqheB65B7uA6PHa", /// replace this with your QuickDrop ID
+      quickdropId: "2S9wcF12tGwRnZJh16H7LVF4DCEVKvuAwfRZGaFcZ8Uq", /// replace this with your QuickDrop ID
       apiBaseUrl: "https://quickdrop.neft.world",
       solanaRpcHost: process.env.REACT_APP_SOLANA_RPC_HOST!,
     },
@@ -55,38 +55,36 @@ export const TokenClaimer = () => {
   }, [claimedAmount]);
 
   return (
-    <div>
-      <h2>Neft QuickDrop</h2>
-      <div>
+    <Box>
+      <Typography variant='h2'>Neft QuickDrop</Typography>
+      <Box>
         {isError ? (
-          <div>Could not connect to quickdrop API</div>
+          <Box>Could not connect to quickdrop API</Box>
         ) : isFetching || isExecuting ? (
           <CircularProgress />
         ) : totalWhitelistedAmount > 0 ? (
-          <div>
+          <Box>
             <CTAButton
               disabled={availableAmount === BigInt(0)}
               onClick={onClick}
             >
               Claim
             </CTAButton>
-            <p>
-              <Typography variant="body1">Claimed</Typography>
-              <Typography variant="h2" color={highlight ? "error" : "primary"}>
-                {claimedAmount.toString()}
-              </Typography>{" "}
-            </p>
+            <Typography variant="body1">Claimed</Typography>
+            <Typography variant="h2" color={highlight ? "error" : "primary"}>
+              {claimedAmount.toString()}
+            </Typography>{" "}
             <Typography variant="body1">
               Remaining
               <Typography variant="h2" color={highlight ? "error" : "primary"}>
                 {availableAmount.toString()}{" "}
               </Typography>
             </Typography>
-          </div>
+          </Box>
         ) : (
-          <div>Wallet not whitelisted</div>
+          <Box>Wallet not whitelisted</Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
