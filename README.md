@@ -1,1 +1,1 @@
-# Metaplex Candy Machine Reference UI
+# QUickDrop Sample Claim based on Metaplex Candy Machine Reference UI (cra v4)
